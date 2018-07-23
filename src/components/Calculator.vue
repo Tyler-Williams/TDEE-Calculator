@@ -1,149 +1,152 @@
 <template>
-  <v-app>
-    <v-container fluid>
-      <v-layout row wrap>
-        <v-flex xs12 sm10 md6 lg6 offset-xs0 offset-lg3 offset-md3 offset-sm1>
-          <v-layout row wrap align-center justify-center>
-            <v-flex xs6 hidden-xs-only>
-              <v-subheader>Units:</v-subheader>
-            </v-flex>
-            <v-flex xs4 sm6>
-              <v-switch
-                v-model="metric"
-                label="Metric"
-                v-on:change="changeUnits"
-              ></v-switch>
-            </v-flex>
-          </v-layout>
-          <v-layout row wrap>
-            <v-flex xs6 hidden-xs-only>
-              <v-subheader>Sex:</v-subheader>
-            </v-flex>
-            <v-flex xs12 sm6>
-              <v-select
-                :items="sexs"
-                v-model="sex"
-                label="Sex"
-                single-line
-              ></v-select>
-            </v-flex>
-          </v-layout>
-          <v-layout row wrap>
-            <v-flex xs6 hidden-xs-only>
-              <v-subheader>Age:</v-subheader>
-            </v-flex>
-            <v-flex xs12 sm6>
-              <v-text-field
-                v-model="age"
-                label="Age"
-                name="height-input"
-                id="age"
-                clearable
-                type="number"
-                suffix="years"
-                :disabled="!this.sex"
-              ></v-text-field>
-            </v-flex>
-          </v-layout>
-          <v-layout row wrap>
-            <v-flex xs6 hidden-xs-only>
-              <v-subheader>Height:</v-subheader>
-            </v-flex>
-            <v-flex xs12 sm6>
-              <v-text-field
-                v-model="height"
-                label="Height"
-                name="height-input"
-                id="height"
-                clearable
-                type="number"
-                :suffix="heightUnits"
-                :disabled="!(this.sex && this.age)"
-              ></v-text-field>
-            </v-flex>
-          </v-layout>
-          <v-layout row wrap>
-            <v-flex xs6 hidden-xs-only>
-              <v-subheader>Weight:</v-subheader>
-            </v-flex>
-            <v-flex xs12 sm6>
-              <v-text-field
-                v-model="weight"
-                label="Weight"
-                name="weight-input"
-                id="weight"
-                clearable
-                type="number"
-                :suffix="weightUnits"
-                :disabled="!(this.sex && this.height && this.age)"
-              ></v-text-field>
-            </v-flex>
-          </v-layout>
-          <v-layout row wrap>
-            <v-flex xs6 hidden-xs-only>
-              <v-subheader>Activity Level:</v-subheader>
-            </v-flex>
-            <v-flex xs12 sm6>
-              <v-select
-                :items="activityLevels"
-                v-model="activityLevel"
-                label="Activity Level"
-                single-line
-                :disabled="!(this.sex && this.height && this.weight && this.age)"
-              ></v-select>
-            </v-flex>
-          </v-layout>
-          <v-layout row wrap>
-            <v-flex xs6 hidden-xs-only>
-              <v-subheader>Personal Goal:</v-subheader>
-            </v-flex>
-            <v-flex xs12 sm6>
-              <v-select
-                :items="goals"
-                v-model="goal"
-                label="Personal Goal"
-                single-line
-                :disabled="!(this.sex && this.height && this.weight && this.activityLevel && this.age)"
-              ></v-select>
-            </v-flex>
-          </v-layout>
-          <v-divider></v-divider>
-          <v-layout row wrap>
-            <v-flex xs6 hidden-xs-only>
-              <v-subheader>Total TDEE:</v-subheader>
-            </v-flex>
-            <v-flex xs12 sm6>
-              <v-text-field
-                v-model="tdee"
-                name="tdee-total"
-                id="tdee-total"
-                placeholder="Total TDEE"
-                readonly
-                :disabled="!this.tdee"
-                >
-              </v-text-field>
-            </v-flex>
-          </v-layout>
-          <v-layout row wrap>
-            <v-flex xs6 hidden-xs-only>
-              <v-subheader>Goal TDEE:</v-subheader>
-            </v-flex>
-            <v-flex xs12 sm6>
-              <v-text-field
-                v-model="goalTdee"
-                name="tdee-goal"
-                id="tdee-gaol"
-                placeholder="Goal TDEE"
-                readonly
-                :disabled="!this.tdee"
-                >
-              </v-text-field>
-            </v-flex>
-          </v-layout>
-        </v-flex>
-      </v-layout>
-    </v-container>
-  </v-app>
+  <div>
+    <img class="logo" src="@/assets/health-graphic.png">
+    <v-app>
+      <v-container fluid>
+        <v-layout row wrap>
+          <v-flex xs12 sm10 md6 lg6 offset-xs0 offset-lg3 offset-md3 offset-sm1>
+            <v-layout row wrap align-center justify-center>
+              <v-flex xs6 hidden-xs-only>
+                <v-subheader>Units:</v-subheader>
+              </v-flex>
+              <v-flex xs4 sm6>
+                <v-switch
+                  v-model="metric"
+                  label="Metric"
+                  v-on:change="changeUnits"
+                ></v-switch>
+              </v-flex>
+            </v-layout>
+            <v-layout row wrap>
+              <v-flex xs6 hidden-xs-only>
+                <v-subheader>Sex:</v-subheader>
+              </v-flex>
+              <v-flex xs12 sm6>
+                <v-select
+                  :items="sexs"
+                  v-model="sex"
+                  label="Sex"
+                  single-line
+                ></v-select>
+              </v-flex>
+            </v-layout>
+            <v-layout row wrap>
+              <v-flex xs6 hidden-xs-only>
+                <v-subheader>Age:</v-subheader>
+              </v-flex>
+              <v-flex xs12 sm6>
+                <v-text-field
+                  v-model="age"
+                  label="Age"
+                  name="height-input"
+                  id="age"
+                  clearable
+                  type="number"
+                  suffix="years"
+                  :disabled="!this.sex"
+                ></v-text-field>
+              </v-flex>
+            </v-layout>
+            <v-layout row wrap>
+              <v-flex xs6 hidden-xs-only>
+                <v-subheader>Height:</v-subheader>
+              </v-flex>
+              <v-flex xs12 sm6>
+                <v-text-field
+                  v-model="height"
+                  label="Height"
+                  name="height-input"
+                  id="height"
+                  clearable
+                  type="number"
+                  :suffix="heightUnits"
+                  :disabled="!(this.sex && this.age)"
+                ></v-text-field>
+              </v-flex>
+            </v-layout>
+            <v-layout row wrap>
+              <v-flex xs6 hidden-xs-only>
+                <v-subheader>Weight:</v-subheader>
+              </v-flex>
+              <v-flex xs12 sm6>
+                <v-text-field
+                  v-model="weight"
+                  label="Weight"
+                  name="weight-input"
+                  id="weight"
+                  clearable
+                  type="number"
+                  :suffix="weightUnits"
+                  :disabled="!(this.sex && this.height && this.age)"
+                ></v-text-field>
+              </v-flex>
+            </v-layout>
+            <v-layout row wrap>
+              <v-flex xs6 hidden-xs-only>
+                <v-subheader>Activity Level:</v-subheader>
+              </v-flex>
+              <v-flex xs12 sm6>
+                <v-select
+                  :items="activityLevels"
+                  v-model="activityLevel"
+                  label="Activity Level"
+                  single-line
+                  :disabled="!(this.sex && this.height && this.weight && this.age)"
+                ></v-select>
+              </v-flex>
+            </v-layout>
+            <v-layout row wrap>
+              <v-flex xs6 hidden-xs-only>
+                <v-subheader>Personal Goal:</v-subheader>
+              </v-flex>
+              <v-flex xs12 sm6>
+                <v-select
+                  :items="goals"
+                  v-model="goal"
+                  label="Personal Goal"
+                  single-line
+                  :disabled="!(this.sex && this.height && this.weight && this.activityLevel && this.age)"
+                ></v-select>
+              </v-flex>
+            </v-layout>
+            <v-divider></v-divider>
+            <v-layout row wrap>
+              <v-flex xs6 hidden-xs-only>
+                <v-subheader>Total TDEE:</v-subheader>
+              </v-flex>
+              <v-flex xs12 sm6>
+                <v-text-field
+                  v-model="tdee"
+                  name="tdee-total"
+                  id="tdee-total"
+                  placeholder="Total TDEE"
+                  readonly
+                  :disabled="!this.tdee"
+                  >
+                </v-text-field>
+              </v-flex>
+            </v-layout>
+            <v-layout row wrap>
+              <v-flex xs6 hidden-xs-only>
+                <v-subheader>Goal TDEE:</v-subheader>
+              </v-flex>
+              <v-flex xs12 sm6>
+                <v-text-field
+                  v-model="goalTdee"
+                  name="tdee-goal"
+                  id="tdee-gaol"
+                  placeholder="Goal TDEE"
+                  readonly
+                  :disabled="!this.tdee"
+                  >
+                </v-text-field>
+              </v-flex>
+            </v-layout>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-app>
+  </div>
 </template>
 
 <script>
@@ -214,5 +217,7 @@ export default {
 </script>
 
 <style scoped>
-
+.logo {
+  width: 66%;
+}
 </style>
